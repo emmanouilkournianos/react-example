@@ -4,5 +4,15 @@ services:
   - docker
 
 script: 
-  - docker built -t react-app .
+  - docker built -t emmanouilkournianos/react-example .
+  - docker images emmanouilkournianos/react-example
+
+before_deploy:
+  - docker login -u kournianosm -p Diamonddesk208 
+
+deploy:
+  provider: script
+  script: docker push emmanouilkournianos/react-example
+  on:
+    branch: master
 
